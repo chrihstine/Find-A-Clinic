@@ -10,14 +10,39 @@ async function main() {
                 console.log("button clicked!");
                 let query = document.querySelector('#search-input').value;
                 let center = map.getBounds().getCenter(); // why? maybe reconsider
-                let response = await search(center.lat, center.lng, query);
                 
+                let dentistResponse = await search(center.lat, center.lng, query, 15007);
+                let gpResponse = await search(center.lat, center.lng, query, 15033);
                 //console.log(response);
-                
+                console.log(dentistResponse.results);
+                console.log(gpResponse.results);
                 searchResultLayer.clearLayers();
 
-                // see note 2
-                for (let eachVenue of response.results) {
+                //for dentist
+                for (let eachVenue of dentistResponse.results) {
+                    // console.log(eachVenue)
+                    let coordinate = [ eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude ];
+                    let marker = L.marker(coordinate);
+                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
+                    searchResultLayer.addLayer(marker)
+                    marker.addTo(searchResultLayer);
+
+                    // add the search result to #search-results
+                    let resultElement = document.createElement('div');
+                    let searchResultElement = document.querySelector('#searchResultElement');
+                    resultElement.className="search-result";
+                    resultElement.innerHTML = eachVenue.name;
+
+                    resultElement.addEventListener('click', function(){
+                        map.flyTo(coordinate, 16);
+                        marker.openPopup();
+                    })
+
+                    searchResultElement.appendChild(resultElement);
+                }
+                
+                //for gp
+                for (let eachVenue of gpResponse.results) {
                     // console.log(eachVenue)
                     let coordinate = [ eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude ];
                     let marker = L.marker(coordinate);

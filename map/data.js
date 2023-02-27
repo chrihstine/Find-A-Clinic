@@ -5,7 +5,7 @@ const headers = {
     Authorization: API_KEY    
 }
 
-async function search(lat, lng, query) {
+async function search(lat, lng, query, category) {
     // create the coordinate
     let ll = lat + "," + lng;
     let response = await axios.get(API_BASE_URL + "/places/search",{
@@ -16,7 +16,7 @@ async function search(lat, lng, query) {
             'll': ll,
             'v': '20210903',  // YYYYMMDD format
             'query': query, 
-            
+            'categories': String(category),
         }
     })
     return response.data;
