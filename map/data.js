@@ -15,7 +15,8 @@ async function search(lat, lng, query) {
         params: {
             'll': ll,
             'v': '20210903',  // YYYYMMDD format
-            'query': query
+            'query': query, 
+            
         }
     })
     return response.data;
