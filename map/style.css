@@ -21,3 +21,8 @@
 #search-btn {
     margin-left: 10px;
 }
+
+#searchResultElement {
+    max-height: 300px;
+    overflow-y:scroll;
+}
