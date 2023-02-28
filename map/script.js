@@ -1,4 +1,31 @@
-//creating layer
+// //creating layer
+// let dentistLayer = L.markerClusterGroup({
+//     iconCreateFunction: function(cluster){
+//         return L.divIcon({
+//             html:`<div class="dentistMarkerIcon">
+//             ${cluster.getChildCount()}
+//             </div>`
+//         })
+//     }
+// });
+
+// dentistLayer.addTo(map);
+
+// //icon
+// const dentistIcon = L.icon({
+//     iconUrl: 'images/dentistIcon.png',
+//     iconSize: [45,45],
+//     iconAnchor:[23,45],
+//     popupAnchor: [0,0]
+// })
+
+async function main() {
+
+    function init() {
+        const map = initMap();
+
+
+//creating layer (dentist)
 let dentistLayer = L.markerClusterGroup({
     iconCreateFunction: function(cluster){
         return L.divIcon({
@@ -11,7 +38,7 @@ let dentistLayer = L.markerClusterGroup({
 
 dentistLayer.addTo(map);
 
-//icon
+//icon (dentist)
 const dentistIcon = L.icon({
     iconUrl: 'images/dentistIcon.png',
     iconSize: [45,45],
@@ -19,10 +46,58 @@ const dentistIcon = L.icon({
     popupAnchor: [0,0]
 })
 
-async function main() {
+//creating layer (tcm)
+let tcmLayer = L.markerClusterGroup({
+    iconCreateFunction: function(cluster){
+        return L.divIcon({
+            html:`<div class="tcmMarkerIcon">
+            ${cluster.getChildCount()}
+            </div>`
+        })
+    }
+});
 
-    function init() {
-        const map = initMap();
+tcmLayer.addTo(map);
+
+//icon (tcm)
+const tcmIcon = L.icon({
+    iconUrl: 'images/tcmIcon.png',
+    iconSize: [45,45],
+    iconAnchor:[23,45],
+    popupAnchor: [0,0]
+})
+
+//creating layer (gp)
+let gpLayer = L.markerClusterGroup({
+    iconCreateFunction: function(cluster){
+        return L.divIcon({
+            html:`<div class="doctorMarkerIcon">
+            ${cluster.getChildCount()}
+            </div>`
+        })
+    }
+});
+
+gpLayer.addTo(map);
+
+//icon (gp)
+const gpIcon = L.icon({
+    iconUrl: 'images/doctorIcon.png',
+    iconSize: [45,45],
+    iconAnchor:[23,45],
+    popupAnchor: [0,0]
+})
+
+//creating the overlays
+let overlays = {
+    dentistLayer,
+    tcmLayer,
+    gpLayer
+}
+
+L.control.layers({}, overlays).addTo(map);
+
+
         // see note 1
         let searchResultLayer = L.layerGroup();
         window.addEventListener('DOMContentLoaded', () => {
@@ -46,10 +121,10 @@ async function main() {
                 for (let eachVenue of dentistResponse.results) {
                     // console.log(eachVenue)
                     let coordinate = [ eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude ];
-                    let dentistMarker = L.marker(coordinate);
-                    dentistMarker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
+                    let marker = L.marker(coordinate, {icon: dentistIcon});
+                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
                     searchResultLayer.addLayer(marker)
-                    dentistMarker.addTo(searchResultLayer); //if we create dentistLayer then it becomes
+                    marker.addTo(searchResultLayer); //if we create dentistLayer then it becomes
                     // search result layer? searchresultlayer is the base layer ?
                     //add dentistmarker to dentistlayer
 
@@ -71,7 +146,7 @@ async function main() {
                 for (let eachVenue of tcmResponse.results) {
                     // console.log(eachVenue)
                     let coordinate = [ eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude ];
-                    let marker = L.marker(coordinate);
+                    let marker = L.marker(coordinate, {icon: tcmIcon});
                     marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
                     searchResultLayer.addLayer(marker)
                     marker.addTo(searchResultLayer);
@@ -94,7 +169,7 @@ async function main() {
                 for (let eachVenue of gpResponse.results) {
                     // console.log(eachVenue)
                     let coordinate = [ eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude ];
-                    let marker = L.marker(coordinate);
+                    let marker = L.marker(coordinate, {icon: gpIcon});
                     marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
                     searchResultLayer.addLayer(marker)
                     marker.addTo(searchResultLayer);
