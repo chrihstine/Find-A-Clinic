@@ -1,22 +1,22 @@
-// //creating layer
-// let dentistLayer = L.markerClusterGroup({
-//     iconCreateFunction: function(cluster){
-//         return L.divIcon({
-//             html:`<div class="dentistMarkerIcon">
-//             ${cluster.getChildCount()}
-//             </div>`
-//         })
+// Landing Page search input and search button
+// document.querySelector('#home-search-input').addEventListener('keydown', async function (event) {
+
+//     if (event.key == 'Enter') {
+
+        // Runs the search and display and map
+        // await main()
+
+        // Hide landing page and display map when search results are rendered 
+        // document.querySelector('body').style.overflow = 'visible'
+        // document.querySelector('html').style.overflow = 'visible'
+        // document.querySelector('#map-container').style.height = '100vh';
+        // document.querySelector('#landingpage').style.height = 0;
+        // document.querySelector('#landingpage').style.overflow = 'hidden';
+
+        // Set input value to null for search input and button in map to run properly 
+//         document.querySelector('#home-search-input').value = null
+
 //     }
-// });
-
-// dentistLayer.addTo(map);
-
-// //icon
-// const dentistIcon = L.icon({
-//     iconUrl: 'images/dentistIcon.png',
-//     iconSize: [45,45],
-//     iconAnchor:[23,45],
-//     popupAnchor: [0,0]
 // })
 
 async function main() {
@@ -95,15 +95,37 @@ let overlays = {
     gpLayer
 }
 
-L.control.layers({}, overlays).addTo(map);
+L.control.layers({}, overlays).addTo(map); //dis does not work ):
 
 
         // see note 1
         let searchResultLayer = L.layerGroup();
+        let resultElement; //= document.createElement('div');
+        let searchResultElement; //= document.querySelector('#searchResultElement');
+        let numButtonClicks = 0;
+
         window.addEventListener('DOMContentLoaded', () => {
-            
+            let resultElement = document.createElement('div');
+            let searchResultElement = document.querySelector('#searchResultElement');
+            console.log(resultElement);
+            console.log(searchResultElement);
+            console.log(resultElement.innerHTML);
+            console.log(searchResultElement.innerHTML);
+
+
             document.querySelector('#search-btn').addEventListener('click', async ()=>{
+                numButtonClicks++;
                 console.log("button clicked!");
+                console.log("Number of button clicks " + numButtonClicks);
+
+                console.log(resultElement);
+            console.log(searchResultElement);
+
+                if (numButtonClicks > 1){
+                     searchResultElement.innerHTML = "";
+                }
+                
+//for i fof results. create element, ap               
                 let query = document.querySelector('#search-input').value;
                 let center = map.getBounds().getCenter(); // why? maybe reconsider
                 
@@ -133,7 +155,7 @@ L.control.layers({}, overlays).addTo(map);
                     let searchResultElement = document.querySelector('#searchResultElement');
                     resultElement.className="search-result";
                     resultElement.innerHTML = eachVenue.name;
-
+console.log(eachVenue.name);
                     resultElement.addEventListener('click', function(){
                         map.flyTo(coordinate, 16);
                         marker.openPopup();

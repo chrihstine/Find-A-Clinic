@@ -1,5 +1,5 @@
 #singapore-map {
-    height: 80vh;
+    height: 100vh;
 }
 
 #map-container {
@@ -25,4 +25,20 @@
 #searchResultElement {
     max-height: 300px;
     overflow-y:scroll;
+}
+
+#landinggif {
+    width: 100% !important;
+    height: 650px !important;
+    position: relative;
+}
+
+ #landgif {
+    position: relative;
+} 
+
+#landbutton {
+    position: absolute;
+    z-index: 31415926;
+    right: 30px;
 }
