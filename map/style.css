@@ -28,17 +28,44 @@
 }
 
 #landinggif {
-    width: 100% !important;
-    height: 650px !important;
-    position: relative;
+    width: 80vw !important;
+    height: 80vh !important;
+    /* position: relative; */
+    object-fit: cover;
+    align-self: center;
+}
+
+.testing{
+    height:100px;
+    width:100px;
 }
 
  #landgif {
     position: relative;
 } 
 
-#landbutton {
+.landbutton {
     position: absolute;
     z-index: 31415926;
     right: 30px;
+    top:0px;
+}
+
+.test {
+    position: relative;
+}
+
+#button {
+    width:50px !important;
+    align-self: center !important;
+   background-color: #72c3c9;
+   border-color: #72c3c9;
+}
+
+#offcanvasTop{
+    z-index: 314200;
+}
+
+.offcanvas {
+    background-color: #72c3c9;
 }

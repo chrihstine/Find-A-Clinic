@@ -1,77 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bs -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bs -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <!-- leaflet css -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-<!-- cluster marker css -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+  <!-- leaflet css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- cluster marker css -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
 
+
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Document</title>
+</head>
+
+
+<body>
+
+  <div class="offcanvas offcanvas-top h-100 show" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="container d-flex flex-column justify-content-center">
+
+      <img id="landinggif" src="images/landingpage.gif">
+      <a href="#" id="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-sm">Start</a>
     
-
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
+    </div>
+  </div>
 
 
-  <body>
+  <!-- landing page -->
+  <!-- <div id="landingpage"> -->
+  <!-- <div class="test"><img id="landinggif" src="images/landingpage.gif">
+    
+      <div class="landbutton">
+        <a href="#" id='landingbutton' class="btn btn-primary btn-sm">Start</a>
+      </div>
+    </div> -->
+  <!-- landing page end -->
 
-    <!-- landing page -->
-<!-- <div id="landingpage"> -->
-  
-   
-    <div><img id="landinggif" src="images/landingpage.gif"> </div>
 
-  <div id="landbutton">
-    <a href="#" id='landingbutton' class="btn btn-primary btn-sm">Start</a>
-</div>
-</div>
-<!-- landing page end -->
+  <!-- map start -->
+  <div id="map-container">
+    <div id="singapore-map">
 
-    <div id="map-container">
-        <div id="singapore-map">
+    </div>
+    <div id="search-container">
+      <input type="text" id="search-input" />
+      <button id="search-btn">Search</button>
 
-        </div>
-        <div id="search-container">
-            <input type="text" id="search-input" />
-            <button id="search-btn">Search</button>
-            <div id="searchResultElement"></div>
-        </div>
+      <div id="layer-container">
+        <input type="checkbox" id="dentistCheckbox" name="dentistCheckbox" checked />
+        <label for="dentistCheckbox" class="iconCheckbox"><img src="images/dentistIcon.png" id="dentistIcon"
+            width="35px" /></label>
+        <input type="checkbox" id="doctorCheckbox" name="doctorCheckbox" checked />
+        <label for="doctoreckbox" class="iconCheckbox"><img src="images/doctorIcon.png" id="doctorIcon"
+            width="35px" /></label>
+        <input type="checkbox" id="tcmCheckbox" name="tcmCheckbox" checked />
+        <label for="tcmCheckbox" class="iconCheckbox"><img src="images/tcmIcon.png" id="tcmIcon" width="35px" /></label>
+
+      </div>
+
+      <div id="searchResultElement"></div>
     </div>
 
-    <!-- Bs -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+
+
+  </div>
+
+  <!-- Bs -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-<!-- axios -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- leaflet -->
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
-   
-<!-- marker clister -->
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-    
- 
+  <!-- leaflet -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 
-    <script src="data.js"></script>
-    <script src="map.js"></script>
-    <script src="script.js"></script>
+  <!-- marker clister -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
+
+
+
+  <script src="data.js"></script>
+  <script src="map.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
