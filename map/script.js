@@ -69,15 +69,32 @@ async function main() {
             popupAnchor: [0, 0]
         })
 
+        //ORIGINAL FILTER SYS. COMMENTED OUT
         //creating the overlays
-        let overlays = {
-            "1": dentistLayer,
-            "2": tcmLayer,
-            "3": gpLayer
-        }
+        // let overlays = {
+        //     "1": dentistLayer,
+        //     "2": tcmLayer,
+        //     "3": gpLayer
+        // }
 
-        let a = L.control.layers({}, overlays).addTo(map); //dis does not work ):
+        // let a = L.control.layers({}, overlays).addTo(map); 
 
+
+        function layerCheckbox(checkboxName,checkboxId,checkboxLayer, iconId){
+            document.querySelector(`input[name=${checkboxName}]`).addEventListener('change', function() {
+                if (document.querySelector(`#${checkboxId}`).checked) {
+                map.addLayer(checkboxLayer);
+                document.querySelector(`#${iconId}`).style.opacity = 1.0;
+                } else if (!document.querySelector(`#${checkboxId}`).checked) {
+                map.removeLayer(checkboxLayer);
+                document.querySelector(`#${iconId}`).style.opacity = 0.5;
+                    }
+                })
+            }
+    
+    layerCheckbox('dentistCheckbox','dentistCheckbox',dentistLayer,'dentistIcon'); 
+    layerCheckbox('tcmCheckbox','tcmCheckbox', tcmLayer,'tcmIcon');
+    layerCheckbox('doctorCheckbox','doctorCheckbox', gpLayer,'doctorIcon');
 
 
         // see note 1
@@ -125,8 +142,11 @@ async function main() {
                 for (let eachVenue of dentistResponse.results) {
                     // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
+                    //let formAdd = eachVenue.location.formatted_address;
                     let marker = L.marker(coordinate, { icon: dentistIcon });
-                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
+                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>
+                    <div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`
+                    )
                     dentistLayer.addLayer(marker)
                     marker.addTo(dentistLayer); 
 
@@ -149,9 +169,9 @@ async function main() {
                     // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
                     let marker = L.marker(coordinate, { icon: tcmIcon });
-                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
-                    searchResultLayer.addLayer(marker)
-                    marker.addTo(searchResultLayer);
+                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div><div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`)
+                    tcmLayer.addLayer(marker)
+                    marker.addTo(tcmLayer);
 
                     // add the search result to #search-results
                     let resultElement = document.createElement('div');
@@ -172,9 +192,9 @@ async function main() {
                     // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
                     let marker = L.marker(coordinate, { icon: gpIcon });
-                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>`)
-                    searchResultLayer.addLayer(marker)
-                    marker.addTo(searchResultLayer);
+                    marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div><div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`)
+                    gpLayer.addLayer(marker)
+                    marker.addTo(gpLayer);
 
                     // add the search result to #search-results
                     let resultElement = document.createElement('div');

@@ -69,3 +69,7 @@
 .offcanvas {
     background-color: #72c3c9;
 }
+
+#dentistCheckbox, #tcmCheckbox, #doctorCheckbox{
+    display: none;
+}
