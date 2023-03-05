@@ -1,5 +1,4 @@
 const map = initMap();
-
 async function main() {
 
     function init() {
@@ -69,8 +68,8 @@ async function main() {
             popupAnchor: [0, 0]
         })
 
-        //ORIGINAL FILTER SYS. COMMENTED OUT
-        //creating the overlays
+        // // ORIGINAL FILTER SYS. COMMENTED OUT
+        // // creating the overlays
         // let overlays = {
         //     "1": dentistLayer,
         //     "2": tcmLayer,
@@ -78,7 +77,7 @@ async function main() {
         // }
 
         // let a = L.control.layers({}, overlays).addTo(map); 
-
+//let markerClusterLayer = L.markerClusterGroup();
 
         function layerCheckbox(checkboxName,checkboxId,checkboxLayer, iconId){
             document.querySelector(`input[name=${checkboxName}]`).addEventListener('change', function() {
@@ -206,6 +205,8 @@ async function main() {
                         map.flyTo(coordinate, 16);
                         marker.openPopup();
                     })
+
+                    map.flyTo(coordinate, 16);
 
                     searchResultElement.appendChild(resultElement);
                 }
