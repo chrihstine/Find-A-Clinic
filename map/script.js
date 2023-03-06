@@ -7,13 +7,14 @@ async function main() {
 
         //creating layer (dentist)
         let dentistLayer = L.markerClusterGroup({
-            iconCreateFunction: function (cluster) {
-                return L.divIcon({
-                    html: `<div class="dentistMarkerIcon">
-            ${cluster.getChildCount()}
-            </div>`
-                })
-            }
+            // iconCreateFunction: function (cluster) {
+            //     return L.divIcon({
+            //         html: `<div class="markerIcon">
+            // ${cluster.getChildCount()}
+            // </div>`,
+            // className: 'dummy'
+            //     })
+            // }
         });
 
         dentistLayer.addTo(map);
@@ -28,13 +29,14 @@ async function main() {
 
         //creating layer (tcm)
         let tcmLayer = L.markerClusterGroup({
-            iconCreateFunction: function (cluster) {
-                return L.divIcon({
-                    html: `<div class="tcmMarkerIcon">
-            ${cluster.getChildCount()}
-            </div>`
-                })
-            }
+            // iconCreateFunction: function (cluster) {
+            //     return L.divIcon({
+            //         html: `<div class="markerIcon">
+            // ${cluster.getChildCount()}
+            // </div>`,
+            // className: 'dummy'
+            //     })
+            // }
         });
 
         tcmLayer.addTo(map);
@@ -49,13 +51,14 @@ async function main() {
 
         //creating layer (gp)
         let gpLayer = L.markerClusterGroup({
-            iconCreateFunction: function (cluster) {
-                return L.divIcon({
-                    html: `<div class="doctorMarkerIcon">
-            ${cluster.getChildCount()}
-            </div>`
-                })
-            }
+            // iconCreateFunction: function (cluster) {
+            //     return L.divIcon({
+            //         html: `<div class="markerIcon">
+            // ${cluster.getChildCount()}
+            // </div>`,
+            // className: 'dummy'
+            //     })
+            // }
         });
 
         gpLayer.addTo(map);
@@ -77,7 +80,7 @@ async function main() {
         // }
 
         // let a = L.control.layers({}, overlays).addTo(map); 
-//let markerClusterLayer = L.markerClusterGroup();
+
 
         function layerCheckbox(checkboxName,checkboxId,checkboxLayer, iconId){
             document.querySelector(`input[name=${checkboxName}]`).addEventListener('change', function() {
@@ -96,8 +99,8 @@ async function main() {
     layerCheckbox('doctorCheckbox','doctorCheckbox', gpLayer,'doctorIcon');
 
 
-        // see note 1
-        let searchResultLayer = L.layerGroup();
+   
+        //let searchResultLayer = L.layerGroup();
         let resultElement; //= document.createElement('div');
         let searchResultElement; //= document.querySelector('#searchResultElement');
         let numButtonClicks = 0;
@@ -123,6 +126,10 @@ async function main() {
                     searchResultElement.innerHTML = "";
                 }
 
+                gpLayer.clearLayers();
+                dentistLayer.clearLayers();
+                tcmLayer.clearLayers();
+
                 //for i fof results. create element, ap               
                 let query = document.querySelector('#search-input').value;
                 let center = map.getBounds().getCenter(); // why? maybe reconsider
@@ -135,7 +142,7 @@ async function main() {
                 console.log(tcmResponse.results);
                 console.log(gpResponse.results);
 
-                searchResultLayer.clearLayers();
+                //searchResultLayer.clearLayers();
 
                 //for dentist
                 for (let eachVenue of dentistResponse.results) {
@@ -215,9 +222,9 @@ async function main() {
 
                 // display the search result layer if it is not displayed
                 // see note 3
-                if (!map.hasLayer(searchResultLayer)) {
+                /*if (!map.hasLayer(searchResultLayer)) {
                     map.addLayer(searchResultLayer);
-                }
+                }*/
             })
         })
     };
