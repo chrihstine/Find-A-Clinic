@@ -72,7 +72,8 @@ Lucida Sans gives off a homely and formal vibe, balancing between care and profe
 --- 
 
 ## Testing
-Test cases can be found [here](Test Cases.pdf).
+Test cases can be found here.
+[Test Cases.pdf](https://github.com/chrihstine/Project-1/files/10933327/Test.Cases.pdf)
 
 ---
 
