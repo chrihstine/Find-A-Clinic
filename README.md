@@ -16,7 +16,7 @@ Find-A-Clinic is designed to encourage patients to locate the correct type of se
 ## Strategy
 ### Target Market
 The target market includes users:
- - aged 18 to 50 with sufficient IT and health literacy
+ - Aged 18 to 50 with sufficient IT and health literacy
 ### Pain Points
 - Existing search engines do not sort the results list according to the type of healthcare services and occasionally return inaccurate results, making it tedious for users to look through the list
 - Healthcare professionals, such as in the hospital A&E, often receive patients with minor ailments treatable at clinics and pharmacies, thus increasing their workload
