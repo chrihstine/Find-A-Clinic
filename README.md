@@ -72,7 +72,7 @@ Lucida Sans gives off a homely and formal vibe, balancing between care and profe
 --- 
 
 ## Testing
-(test cases)
+Test cases can be found [here](Test Cases.pdf).
 
 ---
 
