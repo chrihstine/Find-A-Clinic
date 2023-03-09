@@ -39,7 +39,11 @@ To address the above pain points, the following features are created:
 
 ### Structure
 
+Tree information structure
 ![structure](https://user-images.githubusercontent.com/75159831/224052142-e1124b97-df7e-4165-86fd-971c55e58a8e.png)
+
+Wireframe
+![wireframe](https://user-images.githubusercontent.com/75159831/224079838-013d7324-b954-424e-a1fa-0c85dcd5ae24.png)
 
 #### Color Scheme
 
