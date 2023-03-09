@@ -1,8 +1,9 @@
-# Find A Clinic
+# Find-A-Clinic
 
-/pic
+![mainpic](https://user-images.githubusercontent.com/75159831/224060168-3a3b1cc0-db0f-469c-b8b9-fe11e89f1887.png)
 
-Access the live demo here.
+Access the [live demo](https://findaclinic.netlify.app/) here.
+
 ---
 ## Summary
 ### Project Context
@@ -25,7 +26,7 @@ The target market includes users:
 ### Functional Specifications (Content)
 To address the above pain points, the following features are created:
 - Offer geolocation services so that users can effectively compare the distance between their current location and the location of the desired clinic
-- Markers with differentiated designs for the respective healthcare services and toggling of layers to help users in their decision journey
+- Using visual differentiation via icon markers for the respective healthcare services and toggling of layers to help users in their decision journey
 
 ### Non-functional
 - Website is mobile responsive, so users can view the map on their phone at their convenience
@@ -33,6 +34,7 @@ To address the above pain points, the following features are created:
   - Users can directly click on markers to acess details
   - Users can access a larger map area
 ---
+
 ## UI/UX Elements
 
 ### Structure
@@ -47,7 +49,7 @@ The colors are blue and turqoise shades, to exude a calming effect. Warmer suppo
 
 #### Fonts
 
-![font](https://user-images.githubusercontent.com/75159831/224052489-9fa847f6-5953-4af1-b179-c3702877e2b1.png)
+![fontdemo](https://user-images.githubusercontent.com/75159831/224063360-24ff7379-46c3-4a96-ad52-880dee3397c8.png)
 
 Lucida Sans gives off a homely and formal vibe, balancing between care and professionalism.
 
