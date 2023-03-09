@@ -49,7 +49,7 @@ The colors are blue and turqoise shades, to exude a calming effect. Warmer suppo
 
 #### Fonts
 
-![fontdemo](https://user-images.githubusercontent.com/75159831/224063360-24ff7379-46c3-4a96-ad52-880dee3397c8.png)
+![demofont](https://user-images.githubusercontent.com/75159831/224063968-b56530f9-80df-4d68-96d4-3b9a1ed2b1c5.png)
 
 Lucida Sans gives off a homely and formal vibe, balancing between care and professionalism.
 
