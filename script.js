@@ -7,14 +7,6 @@ async function main() {
 
         //creating layer (dentist)
         let dentistLayer = L.markerClusterGroup({
-            // iconCreateFunction: function (cluster) {
-            //     return L.divIcon({
-            //         html: `<div class="markerIcon">
-            // ${cluster.getChildCount()}
-            // </div>`,
-            // className: 'dummy'
-            //     })
-            // }
         });
 
         dentistLayer.addTo(map);
@@ -29,14 +21,6 @@ async function main() {
 
         //creating layer (tcm)
         let tcmLayer = L.markerClusterGroup({
-            // iconCreateFunction: function (cluster) {
-            //     return L.divIcon({
-            //         html: `<div class="markerIcon">
-            // ${cluster.getChildCount()}
-            // </div>`,
-            // className: 'dummy'
-            //     })
-            // }
         });
 
         tcmLayer.addTo(map);
@@ -51,14 +35,6 @@ async function main() {
 
         //creating layer (gp)
         let gpLayer = L.markerClusterGroup({
-            // iconCreateFunction: function (cluster) {
-            //     return L.divIcon({
-            //         html: `<div class="markerIcon">
-            // ${cluster.getChildCount()}
-            // </div>`,
-            // className: 'dummy'
-            //     })
-            // }
         });
 
         gpLayer.addTo(map);
@@ -70,16 +46,6 @@ async function main() {
             iconAnchor: [23, 45],
             popupAnchor: [0, 0]
         })
-
-        // // ORIGINAL FILTER SYS. COMMENTED OUT
-        // // creating the overlays
-        // let overlays = {
-        //     "1": dentistLayer,
-        //     "2": tcmLayer,
-        //     "3": gpLayer
-        // }
-
-        // let a = L.control.layers({}, overlays).addTo(map); 
 
 
         function layerCheckbox(checkboxName, checkboxId, checkboxLayer, iconId) {
@@ -193,25 +159,17 @@ async function main() {
                 dentistLayer.clearLayers();
                 tcmLayer.clearLayers();
 
-                //for i fof results. create element, ap               
+
                 let query = document.querySelector('#search-input').value;
-                let center = map.getBounds().getCenter(); // why? maybe reconsider
+                let center = map.getBounds().getCenter();
 
                 let dentistResponse = await search(center.lat, center.lng, query, 15007);
                 let tcmResponse = await search(center.lat, center.lng, query, 15003);
                 let gpResponse = await search(center.lat, center.lng, query, 15011);
-                //console.log(response);
-                console.log(dentistResponse.results);
-                console.log(tcmResponse.results);
-                console.log(gpResponse.results);
-
-                //searchResultLayer.clearLayers();
 
                 //for dentist
                 for (let eachVenue of dentistResponse.results) {
-                    // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
-                    //let formAdd = eachVenue.location.formatted_address;
                     let marker = L.marker(coordinate, { icon: dentistIcon });
                     marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div>
                     <div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`
@@ -235,7 +193,6 @@ async function main() {
 
                 //for tcm
                 for (let eachVenue of tcmResponse.results) {
-                    // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
                     let marker = L.marker(coordinate, { icon: tcmIcon });
                     marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div><div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`)
@@ -258,7 +215,6 @@ async function main() {
 
                 //for gp
                 for (let eachVenue of gpResponse.results) {
-                    // console.log(eachVenue)
                     let coordinate = [eachVenue.geocodes.main.latitude, eachVenue.geocodes.main.longitude];
                     let marker = L.marker(coordinate, { icon: gpIcon });
                     marker.bindPopup(`<div><h1>${eachVenue.name}</h1></div><div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`)
@@ -280,14 +236,6 @@ async function main() {
 
                     searchResultElement.appendChild(resultElement);
                 }
-
-
-
-                // display the search result layer if it is not displayed
-                // see note 3
-                /*if (!map.hasLayer(searchResultLayer)) {
-                    map.addLayer(searchResultLayer);
-                }*/
             })
         })
     };
