@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -17,19 +17,28 @@
     min-height: 50px;
     top: 5px;
     left: 45px;
-    background-color: rgba(255,255,255,0.5);
-    padding-top: 25px;
-    padding-left: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+#search-input {
+    background-color: #efefef;
+    border: none;
+    box-shadow: 5px 5px 10px #efefefe0;
+    border-radius: 10px;
 }
 
 #search-btn {
     margin-left: 10px;
     margin-right: 10px;
+    border: grey;
+    border-radius: 10px;
 }
 
 #searchResultElement {
     max-height: 300px;
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
 
 #landinggif {
@@ -40,18 +49,18 @@
     align-self: center;
 }
 
-.testing{
-    height:100px;
-    width:100px;
+.testing {
+    height: 100px;
+    width: 100px;
 }
 
- #landgif {
+#landgif {
     position: relative;
-} 
+}
 
 #tagline {
     text-align: center;
-  
+
 }
 
 #itemsLanding {
@@ -63,7 +72,7 @@
     position: absolute;
     z-index: 31415926;
     right: 30px;
-    top:0px;
+    top: 0px;
 }
 
 .test {
@@ -71,13 +80,15 @@
 }
 
 #button {
-    width:50px !important;
+    width: 50px !important;
     align-self: center !important;
-   background-color: #72c3c9;
-   border-color: #72c3c9;
+    background-color: #72c3c9;
+    border-color: black;
+    color: black;
+    margin-top: 20px;
 }
 
-#offcanvasTop{
+#offcanvasTop {
     z-index: 314200;
 }
 
@@ -85,55 +96,84 @@
     background-color: #72c3c9;
 }
 
-#dentistCheckbox, #tcmCheckbox, #doctorCheckbox{
+#dentistCheckbox,
+#tcmCheckbox,
+#doctorCheckbox {
     display: none;
 }
 
-#form-icon{
+
+#form-icon {
     position: absolute;
     z-index: 314159;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    padding:0;
-    border:none;
-    background-color:transparent
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: none;
+    background-color: transparent
 }
 
-#formIcon{
-    width:50px;
+#formIcon {
+    width: 50px;
 }
 
-#form-container{
+#form-container {
     position: absolute;
     z-index: 314159;
-    height:570px;
-    width:400px;
-    background: rgb(114,195,201);
-    bottom:50px;
-    right:50px;
-    padding: 30px 35px  30px;
-    border-radius:20px;
-    display:none
+    height: 570px;
+    width: 400px;
+    background: rgb(114, 195, 201);
+    bottom: 50px;
+    right: 50px;
+    padding: 30px 35px 30px;
+    border-radius: 20px;
+    display: none
 }
 
-#close-form{
+#close-form {
     position: absolute;
-    top:10px;
-    right:10px;
-    background-color:transparent;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
     border-radius: 20px;
     border-color: grey
 }
 
 .marker-cluster-small div {
-background: rgb(116,195,203, 0.6) !important;
-border: 1.5px solid rgb(49, 49, 49);
+    background: rgb(116, 195, 203, 0.6) !important;
+    border: 1.5px solid rgb(49, 49, 49);
 }
 
 
-#weather-report{
+#weather-report {
     z-index: 3141592;
     position: absolute;
+}
+
+@media (max-width: 480px) {
+    #searchResultElement {
+        max-height: 50px;
+    }
+
+    #search-btn {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #form-container {
+        position: absolute;
+        z-index: 314159;
+        height: 300px;
+        width: 250px;
+        background: rgb(114, 195, 201);
+        bottom: 50px;
+        right: 50px;
+        padding: 30px 35px 30px;
+        border-radius: 20px;
+        display: flex;
+        overflow: scroll;
+    }
+
 }
