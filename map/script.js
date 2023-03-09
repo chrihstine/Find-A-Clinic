@@ -2,7 +2,7 @@ const map = initMap();
 async function main() {
 
     function init() {
-       
+
 
 
         //creating layer (dentist)
@@ -82,72 +82,45 @@ async function main() {
         // let a = L.control.layers({}, overlays).addTo(map); 
 
 
-        function layerCheckbox(checkboxName,checkboxId,checkboxLayer, iconId){
-            document.querySelector(`input[name=${checkboxName}]`).addEventListener('change', function() {
+        function layerCheckbox(checkboxName, checkboxId, checkboxLayer, iconId) {
+            document.querySelector(`input[name=${checkboxName}]`).addEventListener('change', function () {
                 if (document.querySelector(`#${checkboxId}`).checked) {
-                map.addLayer(checkboxLayer);
-                document.querySelector(`#${iconId}`).style.opacity = 1.0;
+                    map.addLayer(checkboxLayer);
+                    document.querySelector(`#${iconId}`).style.opacity = 1.0;
                 } else if (!document.querySelector(`#${checkboxId}`).checked) {
-                map.removeLayer(checkboxLayer);
-                document.querySelector(`#${iconId}`).style.opacity = 0.5;
-                    }
-                })
-            }
-    
-    layerCheckbox('dentistCheckbox','dentistCheckbox',dentistLayer,'dentistIcon'); 
-    layerCheckbox('tcmCheckbox','tcmCheckbox', tcmLayer,'tcmIcon');
-    layerCheckbox('doctorCheckbox','doctorCheckbox', gpLayer,'doctorIcon');
-
-
-// weather KIV
-let weatherLayer = L.layerGroup()
-const weatherApi = 'https://api.data.gov.sg/v1/environment/2-hour-weather-forecast'
-let weatherArray = []
-
-async function weather() {
-    let response = await axios.get(weatherApi)
-    let weatherArea = response.data.area_metadata;
-
-    for (let weather of response.data.items[0].forecasts) {
-        weatherArray.push(weather)
-    }
-
-    for (let i = 0; i < weatherArray.length; i++) {
-        weatherArea[i].forecast = weatherArray[i]
-    }
-
-    for (let loc of weatherArea) {
-        let lat = loc.label_location.latitude;
-        let lng = loc.label_location.longitude;
-
-        if (loc.forecast.forecast == "Cloudy" || loc.forecast.forecast == 'Partly Cloudy (Day)' || loc.forecast.forecast == 'Partly Cloudy (Night)') {
-
-            L.marker([lat, lng], { icon: cloudIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
+                    map.removeLayer(checkboxLayer);
+                    document.querySelector(`#${iconId}`).style.opacity = 0.5;
+                }
+            })
         }
 
-        if (loc.forecast.forecast == "Fair & Warm" || loc.forecast.forecast == 'Fair(Day)' || loc.forecast.forecast == 'Fair(Night)') {
-            L.marker([lat, lng], { icon: sunIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
-        }
+        layerCheckbox('dentistCheckbox', 'dentistCheckbox', dentistLayer, 'dentistIcon');
+        layerCheckbox('tcmCheckbox', 'tcmCheckbox', tcmLayer, 'tcmIcon');
+        layerCheckbox('doctorCheckbox', 'doctorCheckbox', gpLayer, 'doctorIcon');
 
-        if (loc.forecast.forecast == 'Light Showers' || loc.forecast.forecast == 'Showers' || loc.forecast.forecast == 'Moderate Rain' || loc.forecast.forecast == 'Light Rain') {
-            L.marker([lat, lng], { icon: rainIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
-        }
-        if (loc.forecast.forecast == 'Thundery Showers' || loc.forecast.forecast == 'Heavy Thundery Showers' || loc.forecast.forecast == ' Heavy Thundery Showers with Gusty Winds') {
-            L.marker([lat, lng], { icon: thunderIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
-        }
-        weatherLayer.addTo(map)
-    }
+        //weather icons
+        const cloudIcon = L.icon({
+            iconUrl: 'images/cloudIcon.png',
+            iconSize: [45, 45],
+            iconAnchor: [23, 45],
+            popupAnchor: [0, 0]
+        })
 
-}
-//kiv
-const cloudIcon = L.icon({
-    iconUrl: 'images/cloudIcon.png',
-    iconSize: [45, 45],
-    iconAnchor: [23, 45],
-    popupAnchor: [0, 0]
-})
+        const sunIcon = L.icon({
+            iconUrl: 'images/sunIcon.png',
+            iconSize: [45, 45],
+            iconAnchor: [23, 45],
+            popupAnchor: [0, 0]
+        })
 
-   
+        const rainIcon = L.icon({
+            iconUrl: 'images/rainIcon.png',
+            iconSize: [45, 45],
+            iconAnchor: [23, 45],
+            popupAnchor: [0, 0]
+        })
+
+
         //let searchResultLayer = L.layerGroup();
         let resultElement; //= document.createElement('div');
         let searchResultElement; //= document.querySelector('#searchResultElement');
@@ -161,6 +134,48 @@ const cloudIcon = L.icon({
             console.log(resultElement.innerHTML);
             console.log(searchResultElement.innerHTML);
 
+            let weatherLayer = L.layerGroup()
+            const weatherApi = 'https://api.data.gov.sg/v1/environment/2-hour-weather-forecast'
+            let weatherArray = []
+
+            async function weather() {
+                let response = await axios.get(weatherApi)
+                let weatherArea = response.data.area_metadata; //weatherArea don't have forecast
+
+                console.log(weatherArea);
+
+                for (let weather of response.data.items[0].forecasts) { //extracting the forecast data from response 
+                    weatherArray.push(weather) //push weather into weatherArray, so now the array only contains forecastdata
+                    //there is no key here because it is an array
+                }
+
+                for (let i = 0; i < weatherArray.length; i++) {
+                    weatherArea[i].forecast = weatherArray[i] //appending the forecast to the weatherArea,
+                    //creating the forecast key, (.forecast)
+                    //assigning it to the empty weatherArray 
+                }
+
+                for (let loc of weatherArea) {
+                    let lat = loc.label_location.latitude;
+                    let lng = loc.label_location.longitude;
+
+                    if (loc.forecast.forecast == "Cloudy" || loc.forecast.forecast == 'Partly Cloudy (Day)' || loc.forecast.forecast == 'Partly Cloudy (Night)') {
+
+                        L.marker([lat, lng], { icon: cloudIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
+                    }
+
+                    if (loc.forecast.forecast == "Fair & Warm" || loc.forecast.forecast == 'Fair(Day)' || loc.forecast.forecast == 'Fair(Night)') {
+                        L.marker([lat, lng], { icon: sunIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
+                    }
+
+                    if (loc.forecast.forecast == 'Thundery Showers' || loc.forecast.forecast == 'Heavy Thundery Showers' || loc.forecast.forecast == ' Heavy Thundery Showers with Gusty Winds') {
+                        L.marker([lat, lng], { icon: rainIcon }).bindPopup(`<div class="weatherLoc" style= " font-family: 'Inconsolata', monospace"><h6> ${loc.name}</h6></div>`).addTo(weatherLayer)
+                    }
+                    weatherLayer.addTo(map)
+                }
+
+            }
+            weather();
 
             document.querySelector('#search-btn').addEventListener('click', async () => {
                 numButtonClicks++;
@@ -202,7 +217,7 @@ const cloudIcon = L.icon({
                     <div>${eachVenue.location.formatted_address}</div><div>${eachVenue.location.locality}</div>`
                     )
                     dentistLayer.addLayer(marker)
-                    marker.addTo(dentistLayer); 
+                    marker.addTo(dentistLayer);
 
                     // add the search result to #search-results
                     let resultElement = document.createElement('div');

@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/pill.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- leaflet css -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -19,8 +19,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 
   <!-- Bs -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
   <link rel="stylesheet" href="style.css" />
@@ -31,11 +31,12 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 <body>
 
   <div class="offcanvas offcanvas-top h-100 show" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-    <div class="container d-flex flex-column justify-content-center">
+    <div id="itemsLanding" class="container d-flex flex-column justify-content-center">
 
       <img id="landinggif" src="images/landingpage.gif">
+      <div id="tagline">"Putting Your Health on the Map: Find Quality Care Nearby with Just a Few Clicks!"</div>
       <a href="#" id="button" data-bs-dismiss="offcanvas" class="btn btn-primary btn-sm">Start</a>
-    
+
     </div>
   </div>
 
@@ -45,6 +46,8 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
     <div id="singapore-map">
 
     </div>
+
+    <!-- search + filter -->
     <div id="search-container">
       <input type="text" id="search-input" />
       <button id="search-btn">Search</button>
@@ -63,47 +66,46 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
 
       <div id="searchResultElement"></div>
     </div>
-
+    <!-- feedback form -->
     <button id="form-icon"><img src="images/nani.png" id="formIcon" width="35px" /></button>
     <div id="form-container">
-        <button id="close-form"><i class="fa-solid fa-x fa-l form-x"></i></button>
-        <div id="form">
-            <h2>Contact Us</h2>
-            <div class="input-control">
-                <label for="form-name">Name</label>
-                <input type="text" id="form-name" placeholder="First and last name" />
-                <div id="nameError" class="error" style="opacity:0">Please enter your name.</div>
-            </div>
-            <div class="input-control">
-                <label for="form-email">Email</label>
-                <input type="text" id="form-email" placeholder="Email address" />
-                <div id="emailError" class="error" style="opacity:0">Please provide a valid email address.</div>
-            </div>
-            <div class="radio-control">
-                Message category:
-                <br>
-                <input type="radio" id="enquiry" name="contact-us" class="radio-btn">
-                <label for="enquiry" class="radio-txt">Enquiry</label>
-                <input type="radio" id="suggestions" name="contact-us" class="radio-btn">
-                <label for="suggestions" class="radio-txt">Suggestions</label>
-                <input type="radio" id="others" name="contact-us" class="radio-btn">
-                <label for="others" class="radio-txt">Others</label>
-                <div id="radioError" class="error" style="opacity:0">Please check at least one option.</div>
-            </div>
-            <div class="input-control d-flex flex-column">
-                <label for-="form-message">Message</label>
-                <textarea rows="6" wrap="virtual" id="form-message"
-                    placeholder="Enter your message here"></textarea>
-                <div id="messageError" class="error" style="opacity:0">Your message must be at least 5 characters long
-                </div>
-            </div>
-            <button type="submit" id="form-btn">Submit</button>
+      <button id="close-form"><i class="fa-solid fa-x fa-l form-x"></i></button>
+      <div id="form">
+        <h2>Contact Us</h2>
+        <div class="input-control">
+          <label for="form-name">Name</label>
+          <input type="text" id="form-name" placeholder="First and last name" />
+          <div id="nameError" class="error" style="opacity:0">Please enter your name.</div>
         </div>
+        <div class="input-control">
+          <label for="form-email">Email</label>
+          <input type="text" id="form-email" placeholder="Email address" />
+          <div id="emailError" class="error" style="opacity:0">Please provide a valid email address.</div>
+        </div>
+        <div class="radio-control">
+          Message category:
+          <br>
+          <input type="radio" id="enquiry" name="contact-us" class="radio-btn">
+          <label for="enquiry" class="radio-txt">Enquiry</label>
+          <input type="radio" id="suggestions" name="contact-us" class="radio-btn">
+          <label for="suggestions" class="radio-txt">Suggestions</label>
+          <input type="radio" id="others" name="contact-us" class="radio-btn">
+          <label for="others" class="radio-txt">Others</label>
+          <div id="radioError" class="error" style="opacity:0">Please check at least one option.</div>
+        </div>
+        <div class="input-control d-flex flex-column">
+          <label for-="form-message">Message</label>
+          <textarea rows="6" wrap="virtual" id="form-message" placeholder="Enter your message here"></textarea>
+          <div id="messageError" class="error" style="opacity:0">Your message must be at least 5 characters long
+          </div>
+        </div>
+        <button type="submit" id="form-btn">Submit</button>
+      </div>
     </div>
 
-
-
-  </div>
+<!-- weather box -->
+    <!-- <div id="weather-report"></div>
+    <div id="weather-box"></div> -->
 
   <!-- Bs -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -123,11 +125,13 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
   <!-- marker clister -->
   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
 
-<!-- geolocation -->
-<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  <!-- geolocation -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
+    charset="utf-8"></script>
 
   <script src="data.js"></script>
   <script src="map.js"></script>
+  <!-- <script src="weather.js"></script> -->
   <script src="formv.js"></script>
   <script src="script.js"></script>
 </body>

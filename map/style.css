@@ -49,6 +49,16 @@
     position: relative;
 } 
 
+#tagline {
+    text-align: center;
+  
+}
+
+#itemsLanding {
+    text-align: center;
+
+}
+
 .landbutton {
     position: absolute;
     z-index: 31415926;
@@ -122,3 +132,8 @@ background: rgb(116,195,203, 0.6) !important;
 border: 1.5px solid rgb(49, 49, 49);
 }
 
+
+#weather-report{
+    z-index: 3141592;
+    position: absolute;
+}
